@@ -61,7 +61,9 @@ isShortsWeather(75) //true
 =========================================================== */
 
 const isShortsWeather = (temp) => {
+    // boolean
     return temp >= 75;
+    
     // if (temp >= 75) {
     //     return true;
     // } else {
@@ -85,14 +87,21 @@ lastElement([1]) //1
 lastElement([]) //null
 =========================================================== */
 
-const lastElement = (arr) => {
-    const isElement = arr.length > 0;
+// ternary operator
+// (condition) ? true : false
+// (isDrunk === 1) ? "Yes" : "No"
+// if (isDrunk === 1) ?{ return "Yes" } else { return "No" }
 
-    if (isElement) {
-        return arr[arr.length-1];
-    } else {
-        return null;
-    }
+const lastElement = (arr) => {
+    return arr.length > 0 ? arr[arr.length-1] : null;
+
+    // const isElement = arr.length > 0;
+
+    // if (isElement) {
+    //     return arr[arr.length-1];
+    // } else {
+    //     return null;
+    // }
 }
 console.log(lastElement([3,5,7]));
 console.log(lastElement([1]));
@@ -111,7 +120,9 @@ capitalize('squid') //"Squid"
 =========================================================== */
 
 const capitalize = (str) => {
-    return str.charAt(0).toUpperCase() + str.slice(1);
+    // concat can be used not only for array but also string! 
+    return str.charAt(0).toUpperCase().concat(str.slice(1));
+    // return str.charAt(0).toUpperCase() + str.slice(1);
 }
 console.log(capitalize('eggplant'));
 console.log(capitalize('pamplemousse'));
@@ -130,11 +141,13 @@ sumArray([50,50,2]) //102
 =========================================================== */
 
 const sumArray = (arr) => {
-    let sum = 0;
-    for (let i = 0; i < arr.length; i++) {
-        sum += arr[i];
-    }
-    return sum;
+    return arr.reduce((accumulator, currentValue) => accumulator + currentValue);
+
+    // let sum = 0;
+    // for (let i = 0; i < arr.length; i++) {
+    //     sum += arr[i];
+    // }
+    // return sum;
 }
 console.log(sumArray([1,2,3]));
 console.log(sumArray([2,2,2,2]));
@@ -163,11 +176,14 @@ returnDay(8) //null
 const returnDay = (x) => {
     const week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
     
-    if (x > 7 || x < 1) {
-        return null;
-    } else {
-        return week[x-1];
-    }
+    // ternary operator
+    return x > 7 || x < 1 ? null : week[x-1];
+    
+    // if (x > 7 || x < 1) {
+    //     return null;
+    // } else {
+    //     return week[x-1];
+    // }
 }
 console.log(returnDay(0));
 console.log(returnDay(1));
@@ -189,11 +205,15 @@ isSnakeEyes(1,1); //Snake Eyes!
 =========================================================== */
 
 const isSnakeEyes = (x, y) => {
-    if (x === 1 && y === 1) {
-        return "Snake Eyes!";
-    } else {
-        return "Not Snake Eyes!";
-    }
+        
+    // ternary operator
+    return x === 1 && y === 1 ? "Snake Eyes!" : "Not Snake Eyes!";
+
+    // if (x === 1 && y === 1) {
+    //     return "Snake Eyes!";
+    // } else {
+    //     return "Not Snake Eyes!";
+    // }
 }
 console.log(isSnakeEyes(1,5));
 console.log(isSnakeEyes(6,3));
@@ -219,7 +239,7 @@ calculateDogAge(12); //Your doggie is 84 years old in dog years!
 =========================================================== */
 
 const calculateDogAge = (x) => {
-    const age = x * 7;
+    let age = x * 7;
 
     return `Your doggie is ${age} years old in dog years!`;
 }
@@ -242,20 +262,26 @@ isPangram('five boxing wizards jump quickly at it'); //false
 =========================================================== */
 
 const isPangram = (str) => {
-    const alphabet = "abcdefghijklmnopqrstuvwxyz";
-    let newStr = str.replace(/\s+/g, "");
+    const alphabet = [..."abcdefghijklmnopqrstuvwxyz"];
+    str = str.toLowerCase();
+    // return alphabet.every((letter) => str.includes(letter));
 
-    for (let i = 0; i < alphabet.length; i++) {
-        if (newStr.indexOf(alphabet[i]) === -1) {
-            return false;
-        }
-    }
-    return true;
+    // Hash Map
+    return [ ...new Set(str.toLowerCase().match(/[a-z]/g))].length === 26;
+
+    // const alphabet = "abcdefghijklmnopqrstuvwxyz";
+    // let newStr = str.replace(/\s+/g, "");
+
+    // for (let i = 0; i < alphabet.length; i++) {
+    //     if (newStr.indexOf(alphabet[i]) === -1) {
+    //         return false;
+    //     }
+    // }
+    // return true;
 }
 console.log(isPangram('abcdefghijklmnopqrstuvwxyz'));
 console.log(isPangram('the quick brown fox jumps over the lazy dog'));
 console.log(isPangram('five boxing wizards jump quickly at it'));
-console.log(isPangram('abc z'));
 
 /* ===========================================================
 /* ===================== Question 11 =========================
@@ -268,13 +294,15 @@ in that array.
 =========================================================== */
 
 const evens = (arr) => {
-    let newArr = [];
-    for (let i = 0; i < arr.length; i++) {
-        if (arr[i] % 2 === 0) {
-            newArr.push(arr[i]);
-        }
-    }
-    return newArr;
+    return arr.filter((e) => e % 2 === 0);
+
+    // let newArr = [];
+    // for (let i = 0; i < arr.length; i++) {
+    //     if (arr[i] % 2 === 0) {
+    //         newArr.push(arr[i]);
+    //     }
+    // }
+    // return newArr;
 }
 console.log(evens([1, 2, 3, 4, 5, 6, 7, 8]));
 
@@ -292,7 +320,6 @@ const max = (arr) => {
     // let newArr = arr.sort((a, b) => a - b);
     // return newArr[newArr.length-1];
 
-    // hint: Math.max
     return Math.max(...arr);
 }
 console.log(max([1, 5, 10, 15]));
