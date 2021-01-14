@@ -320,6 +320,8 @@ const max = (arr) => {
     // let newArr = arr.sort((a, b) => a - b);
     // return newArr[newArr.length-1];
 
+    // return arr.sort((a, b) => a-b).pop();
+
     return Math.max(...arr);
 }
 console.log(max([1, 5, 10, 15]));
